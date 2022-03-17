@@ -1,7 +1,10 @@
 <div>
    Show Tweets
    <h1>{{$message}}</h1>
-   <input type="text" name="message" id="message" wire:model="message">
+   <form method="post" wire:submit.prevent="create">
+      <input type="text" name="message" id="message" wire:model="message">
+         <button type="submit">Criar Tweet</button>
+   </form>
    <hr>  
    <ul>
    @foreach ($tweets as $tweet)
