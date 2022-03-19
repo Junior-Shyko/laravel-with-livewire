@@ -9,10 +9,18 @@ class ShowTweets extends Component
 {
     public $message =  'Apenas um teste';
 
+    public $showModalInst = false;
+
     public function render()
     {
         $tweets = Tweet::get();
         return view('livewire.show-tweets' , compact('tweets'));
+    }
+
+    public function showModal() 
+    {
+        $this->showModalInst = true;
+       
     }
 
     public function create()
