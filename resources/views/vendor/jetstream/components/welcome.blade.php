@@ -19,7 +19,7 @@
         <div class="flex items-center">
             <i class="fa fa-plus fa-2x"> </i>
             <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
-                <a href="https://laravel.com/docs">NOVO REQUERIMENTO</a>
+                <a href="{{ url('criar-requerimento') }}">NOVO REQUERIMENTO</a>
             </div>
         </div>
 

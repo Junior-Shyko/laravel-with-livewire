@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\{
-    ShowTweets
+    ShowTweets,
+    CreateApplication
 };
 
 /*
@@ -16,6 +17,7 @@ use App\Http\Livewire\{
 |
 */
 Route::get('tweets', [App\Http\Livewire\ShowTweets::class, '__invoke'])->name('tweets');
+Route::get('criar-requerimento', [App\Http\Livewire\CreateApplication::class, '__invoke']);
 
 Route::get('/', function () {
     return view('welcome');
