@@ -8,7 +8,9 @@ use Livewire\Component;
 
 class CreateApplication extends Component
 {
-    public $showDivCourse = true;
+    public $showDivResidency = false;
+    public $showDivCourse = false;
+    public $showDivComp = false;
     protected $listeners = ['showDiv' => 'change'];
     public $dtini = '';
     public $dtend = '';
@@ -16,14 +18,16 @@ class CreateApplication extends Component
     public function change($value)
     {
        //dump($value);
-       if($value == 0){
-
-           $this->showDivCourse = true;
-
-       }else{
+        $this->showDivComp = true;
+        if($value == 0){
+            $this->showDivComp = false;
+        }elseif($value == 2 || $value == 3){
+            $this->showDivResidency = true;
             $this->showDivCourse = false;
-           
-       }
+        }else{
+            $this->showDivCourse = true;
+            $this->showDivResidency = false;           
+        }
     }
 
     public function render()
@@ -44,6 +48,15 @@ class CreateApplication extends Component
         ];
         $this->dtini = Manny::mask($this->dtini, "11/11/1111");
         $this->dtend = Manny::mask($this->dtend, "11/11/1111");
-        return view('livewire.create-application', compact('course', 'city'));
+        $state = [
+            ['codigo'  => 1, 'estado' => 'Acre' , 'sigle' => 'AC'],
+            ['codigo'  => 2, 'estado' => 'Alagoas' , 'sigle' => 'AL'],
+            ['codigo'  => 3, 'estado' => 'Amazonas' , 'sigle' => 'AM'],
+            ['codigo'  => 4, 'estado' => 'Amapá' , 'sigle' => 'AP'],
+            ['codigo'  => 5, 'estado' => 'Bahia' , 'sigle' => 'BA'],
+            ['codigo'  => 6, 'estado' => 'Ceará' , 'sigle' => 'CE']
+        ];
+
+        return view('livewire.create-application', compact('course', 'city', 'state'));
     }
 }
