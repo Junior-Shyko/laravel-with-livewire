@@ -33,6 +33,61 @@
                 </div>
                 @if ($showDivCourse)
                 <div class="grid grid-cols-12 gap-4 bg-white border rounded shadow p-2">
+                    {{-- PROGRAMA --}}
+                    <div class="col-span-12 lg:col-span-12">
+                        <label class="block text-sm font-medium 
+                            text-gray-700">Programa</label>
+                        <select name="curso" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+                            block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <option>--Selecione--</option>
+                            <option value="1">ANASTESIOLOGIA</option>
+                            <option value="2">CANCEROLOGIA PEDIÁTRICA</option>
+                            <option value="3">CARDIOLOGIA</option>
+                            <option value="4">CARDIOLOGIA  R3/ ECOCARDIOGRAFIA</option>
+                            <option value="5">CARDIOLOGIA PEDIÁTRICA</option>
+                        </select>
+                    </div>
+                     {{-- Hospital --}}
+                    <div class="col-span-12 lg:col-span-8">
+                        <label class="block text-sm font-medium 
+                            text-gray-700">Hospital</label>
+                        <select name="idHospital" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+                            block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <option>--Selecione--</option>
+                            <option value="1">ANASTESIOLOGIA</option>
+                            <option value="2">CANCEROLOGIA PEDIÁTRICA</option>
+                            <option value="3">CARDIOLOGIA</option>
+                            <option value="4">CARDIOLOGIA  R3/ ECOCARDIOGRAFIA</option>
+                            <option value="5">CARDIOLOGIA PEDIÁTRICA</option>
+                        </select>
+                    </div>
+                    {{-- PERIODO --}}
+                    <div class="col-span-12 lg:col-span-2">
+                        <label class="block text-sm font-medium 
+                            text-gray-700">De:</label>
+                            <input wire:model="dtini"  class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+                            block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" 
+                            id="" name="ano" type="text">
+                    </div>
+                    <div class="col-span-12 lg:col-span-2">
+                        <label class="block text-sm font-medium 
+                            text-gray-700">Até:</label>
+                            <input wire:model="dtend" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+                            block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" 
+                            id="" name="ano" type="text">
+                    </div>
+
+                    <div class="col-span-12 lg:col-span-4">
+                        <label class="block text-sm font-medium 
+                            text-gray-700">Curso</label>
+                        <select name="curso" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+                            block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <option>--Selecione--</option>
+                            @foreach ($course as $item)
+                                <option value="{{$item->id}}">{{$item->curso}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="col-span-12 lg:col-span-4">
                         <label class="block text-sm font-medium 
                             text-gray-700">Curso</label>

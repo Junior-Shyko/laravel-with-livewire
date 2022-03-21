@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use DB;
+use Manny\Manny;
+use Livewire\Component;
 
 class CreateApplication extends Component
 {
     public $showDivCourse = true;
     protected $listeners = ['showDiv' => 'change'];
+    public $dtini = '';
+    public $dtend = '';
 
     public function change($value)
     {
@@ -39,7 +42,8 @@ class CreateApplication extends Component
             4 => 'Sobral',
             5 => 'Crato',
         ];
-        
+        $this->dtini = Manny::mask($this->dtini, "11/11/1111");
+        $this->dtend = Manny::mask($this->dtend, "11/11/1111");
         return view('livewire.create-application', compact('course', 'city'));
     }
 }
