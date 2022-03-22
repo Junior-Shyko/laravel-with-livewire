@@ -33,6 +33,9 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <img
+                src="https://www.esp.ce.gov.br/wp-content/uploads/sites/78/2021/09/ESP-CE-ORGAO-SEC-INVERTIDA-WEB.svg" alt=""
+               style="width:200px;">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
