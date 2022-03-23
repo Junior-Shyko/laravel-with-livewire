@@ -23,11 +23,11 @@
                         <select name="cursotype" wire:change="change($event.target.value)"
                             class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
                             block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            <option>--Selecione--</option>
-                            <option value="0">CURSO LIVRE</option>
-                            <option value="1">ESPECIALIZAÇÃO</option>
-                            <option value="2">RESIDÊNCIA</option>
-                            <option value="3">RESIDÊNCIA MULTIPROFISSIONAL EM SAÚDE</option>
+                            <option value="0">--Selecione--</option>
+                            <option value="1">CURSO LIVRE</option>
+                            <option value="2">ESPECIALIZAÇÃO</option>
+                            <option value="3">RESIDÊNCIA</option>
+                            <option value="4">RESIDÊNCIA MULTIPROFISSIONAL EM SAÚDE</option>
                         </select>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
               
                     
                 <div class="grid grid-flow-row auto-rows-max bg-white border rounded shadow p-2">
-                    <div class="flex  place-content-evenly">
+                    <div class="flex place-content-evenly">
                         <button class="bg-emerald-500 hover:bg-emerald-700 px-5 py-2.5 
                         text-sm leading-5 rounded-md font-semibold text-white">
                             <i class="fa fa-save"></i>

@@ -17,7 +17,7 @@ class CreateApplication extends Component
 
     public function change($value)
     {
-       //dump($value);
+      
         $this->showDivComp = true;
         if($value == 0){
             $this->showDivComp = false;
