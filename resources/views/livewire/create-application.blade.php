@@ -16,12 +16,45 @@
 <div class="py-6">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex flex-wrap">
-            <form wire:submit.prevent="store" id="formStoreRequisition">
             <div class="container">
+                <div class="col-span-4">
+                    <button wire:click="addTodo" class="bg-emerald-500 hover:bg-emerald-700
+                    text-white font-bold py-2 px-4 border border-emerald-700 rounded">
+                       Button
+                     </button>
+                </div>
+                <div class="col-span-4"></div>
+                <div class="col-span-4"></div>
+            </div>
+            <form wire:submit.prevent="store" class="border-red-500" id="formStoreRequisition">
+            <div class="container">
+                <div class="container">
+                    <div class="col-span-4">
+                       
+                    </div>
+                    <div class="col-span-4">
+                        @if ($errors->any())
+                        <div class="bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md" role="alert">
+                            <div class="flex">
+                              <div class="py-1"><svg class="fill-current h-6 w-6 text-red-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                              <div>
+                                <p class="font-bold">Campos Obrigatórios</p>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li class="text-sm"><strong>{{ $error }}</strong></li>
+                                    @endforeach
+                                </ul>
+                              </div>
+                            </div>
+                        </div>
+                        @endif                      
+                    </div>
+                    <div class="col-span-4"></div>
+                </div>
                 <div class="bg-white border rounded shadow p-2">
                     <div class="col-span-12">
                         <label class="block text-sm font-medium text-gray-700">Categoria</label>
-                        <select name="cursotype" wire:model="formReq.cat" wire:change="change($event.target.value)"
+                        <select wire:model="formReq.fkcodcategoria" wire:change="change($event.target.value)"
                             class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
                             block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             <option value="0">--Selecione--</option>
@@ -30,6 +63,7 @@
                             <option value="3">RESIDÊNCIA</option>
                             <option value="4">RESIDÊNCIA MULTIPROFISSIONAL EM SAÚDE</option>
                         </select>
+                        <p class="text-gray-600 text-xs italic">Campo Obrigatório</p>
                     </div>
                 </div>
                
@@ -47,7 +81,7 @@
                         <label class="block text-sm font-medium 
                         text-gray-700">Informações Complementares
                         </label>
-                        <textarea name="infoComplementares" id="" cols="30" rows="10" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+                        <textarea wire:model="formReq.informacoes" id="" cols="30" rows="10" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
                         block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
                     </div>
                     @endif
@@ -56,17 +90,17 @@
                     
                 <div class="grid grid-flow-row auto-rows-max bg-white border rounded shadow p-2">
                     <div class="flex place-content-evenly">
-                        <button type="submit" class="bg-emerald-500 hover:bg-emerald-700 px-5 py-2.5 
+                        <button type="submit" title="Cadastrar novo requerimento" class="bg-emerald-500 hover:bg-emerald-700 px-5 py-2.5 
                         text-sm leading-5 rounded-md font-semibold text-white">
                             <i class="fa fa-save"></i>
                             CADASTRAR
                         </button>
-                        <button class="bg-slate-100 border-slate-300 hover:bg-slate-300  px-5 py-2.5 
+                        {{-- <button class="bg-slate-100 border-slate-300 hover:bg-slate-300  px-5 py-2.5 
                         text-sm leading-5 rounded-md font-semibold text-gray">
                             <i class="fa fa-eraser" aria-hidden="true"></i>
                             LIMPAR
-                        </button>
-                        <a href="{{url('dashboard')}}" class="bg-slate-100 hover:bg-slate-300 px-5 py-2.5 
+                        </button> --}}
+                        <a href="{{url('dashboard')}}" title="Voltar para home" class="bg-slate-100 hover:bg-slate-300 px-5 py-2.5 
                         text-sm leading-5 rounded-md font-semibold text-gray">
                             <i class="fa fa-undo" aria-hidden="true"></i>
                             VOLTAR

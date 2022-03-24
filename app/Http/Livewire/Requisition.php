@@ -15,6 +15,16 @@ class Requisition extends Component
     public $dtini = '';
     public $dtend = '';
     public $formReq = [];
+    protected $rules = [
+        'formReq.fkcodcategoria' => 'required',
+        'formReq.fkcodcurso' => 'required',
+        'formReq.fkcodcidade' => 'required',
+    ];
+    protected $messages = [
+        'formReq.fkcodcategoria.required' => 'O Campo categoria é obrigatório',
+        'formReq.fkcodcurso.required' => 'O Campo Curso é obrigatório',
+        'formReq.fkcodcidade.required' => 'O Campo Cidade é obrigatório',
+    ];
 
     public function change($value)
     {
@@ -85,7 +95,18 @@ class Requisition extends Component
 
     public function store()
     {
-        dd($this->formReq);
+        $val = $this->validate();
+        dd($val);
+        $this->dispatchBrowserEvent('toastr:info', ['message' => $this->validate()]);
+       
+        // dd($val);
+        // dd($this->formReq);
+    }
+
+    public function addTodo() 
+    {
+        //dump('aqui');
+        $this->dispatchBrowserEvent('name-updated', ['message' => 'Requerimento cadastrdo']);
     }
     // public function render()
     // {

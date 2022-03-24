@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Requisition extends Model
 {
     use HasFactory;
+    protected  $fillable = ['content' , 'user_id'];
 }
