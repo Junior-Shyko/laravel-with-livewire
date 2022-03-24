@@ -1,7 +1,7 @@
 <div class="col-span-12 lg:col-span-12">
     <label class="block text-sm font-medium 
         text-gray-700">Programa</label>
-    <select name="curso" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+    <select name="curso" wire:model="formReq.fkcodprograma" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
         block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         <option>--Selecione--</option>
         <option value="1">ANASTESIOLOGIA</option>
@@ -15,7 +15,7 @@
 <div class="col-span-12 lg:col-span-8">
     <label class="block text-sm font-medium 
         text-gray-700">Hospital</label>
-    <select name="idHospital" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+    <select  wire:model="formReq.fkcodhospital" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
         block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         <option>--Selecione--</option>
         <option value="1">HGF- HOSPITAL GERAL DE FORTALEZA</option>
@@ -29,7 +29,7 @@
 <div class="col-span-12 lg:col-span-2">
     <label class="block text-sm font-medium 
         text-gray-700">De:</label>
-        <input wire:model="dtini"  class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+        <input  wire:model="formReq.datainicio" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
         block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" 
         id="" name="ano" type="text" placeholder="__/__/____">
         <p class="text-gray-600 text-xs italic">Período da solicitação</p>
@@ -37,7 +37,7 @@
 <div class="col-span-12 lg:col-span-2">
     <label class="block text-sm font-medium 
         text-gray-700">Até:</label>
-        <input wire:model="dtend" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+        <input wire:model="formReq.datafinal" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
         block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" 
         id="" name="ano" type="text" placeholder="__/__/____">
 </div>
@@ -45,7 +45,7 @@
 <div class="col-span-12 lg:col-span-4">
     <label class="block text-sm font-medium 
         text-gray-700">Matrícula</label>
-        <input class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+        <input wire:model="formReq.matricula" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
         block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" 
         id="" name="matricula" type="text">
 </div>
@@ -55,7 +55,7 @@
         text-gray-700">
     CRM
     </label>
-    <input class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+    <input wire:model="formReq.crm" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
         block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" 
         id="" name="ano" type="text">
 </div>
@@ -64,11 +64,11 @@
     <label for="first_name" 
         class="block text-sm font-medium 
         text-gray-700">UF</label>
-    <select name="cidade" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+    <select wire:model="formReq.fkcodestado" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
         block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         <option>--Selecione--</option>
         @foreach ($state as $key => $item)
-            <option value="{{$item['codigo']}}">{{$item['estado']}}</option>
+            <option value="{{$key + 1}}">{{$item['nome']}}</option>
         @endforeach
     </select>
 </div>

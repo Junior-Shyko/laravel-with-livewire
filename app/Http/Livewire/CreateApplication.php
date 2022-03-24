@@ -21,7 +21,7 @@ class CreateApplication extends Component
         $this->showDivComp = true;
         if($value == 0){
             $this->showDivComp = false;
-        }elseif($value == 2 || $value == 3){
+        }elseif($value == 3 || $value == 4){
             $this->showDivResidency = true;
             $this->showDivCourse = false;
         }else{

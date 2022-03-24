@@ -16,11 +16,12 @@
 <div class="py-6">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex flex-wrap">
+            <form wire:submit.prevent="store" id="formStoreRequisition">
             <div class="container">
                 <div class="bg-white border rounded shadow p-2">
                     <div class="col-span-12">
                         <label class="block text-sm font-medium text-gray-700">Categoria</label>
-                        <select name="cursotype" wire:change="change($event.target.value)"
+                        <select name="cursotype" wire:model="formReq.cat" wire:change="change($event.target.value)"
                             class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
                             block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             <option value="0">--Selecione--</option>
@@ -55,7 +56,7 @@
                     
                 <div class="grid grid-flow-row auto-rows-max bg-white border rounded shadow p-2">
                     <div class="flex place-content-evenly">
-                        <button class="bg-emerald-500 hover:bg-emerald-700 px-5 py-2.5 
+                        <button type="submit" class="bg-emerald-500 hover:bg-emerald-700 px-5 py-2.5 
                         text-sm leading-5 rounded-md font-semibold text-white">
                             <i class="fa fa-save"></i>
                             CADASTRAR
@@ -72,9 +73,8 @@
                         </a>  
                     </div>
                 </div>  
-    
-
             </div>
+        </form>
         </div>
     </div>
 </div>
