@@ -9,10 +9,17 @@ class Requisition extends Model
 {
     use HasFactory;
 
-    protected  $fillable = ['fkcodcategoria' , 'fkcodprograma',
+    protected  $fillable = [
+            'fkcodcategoria' ,
+            'fkcodprograma',
             'fkcodhospital', 
-            'datainicio', 'datafinal',
-            'matricula', 'crm', 'fkcodestado', 
-            'fkcodcurso', 'ano', 'fkcodcidade'
+            'datainicio',
+            'datafinal',
+            'matricula',
+            'crm',
+            'fkcodestado', 
+            'fkcodcurso',
+            'ano',
+            'fkcodcidade'
     ];
 }

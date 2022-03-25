@@ -97,11 +97,26 @@ class Requisition extends Component
     public function store()
     {
         $val = $this->validate();
+       //dd($this->formReq);
         try {
             //code...event.detail.message
-            Requi::create($val);
+            $insert = [
+                    'fkcodcategoria' => $this->formReq['fkcodcategoria'],
+                    'fkcodprograma' => isset( $this->formReq['fkcodprograma'] ) ?  $this->formReq['fkcodprograma'] : 0,
+                    'fkcodhospital' => isset( $this->formReq['fkcodhospital'] ) ?  $this->formReq['fkcodhospital'] : 0, 
+                    'datainicio' => isset( $this->formReq['datainicio'] ) ?  $this->formReq['datainicio'] : null,
+                    'datafinal' => isset( $this->formReq['datafinal'] ) ?  $this->formReq['datafinal'] : null,
+                    'matricula' => isset( $this->formReq['matricula'] ) ?  $this->formReq['matricula'] : null,
+                    'crm' => isset( $this->formReq['crm'] ) ?  $this->formReq['crm'] : null,
+                    'fkcodestado' => isset( $this->formReq['fkcodestado'] ) ?  $this->formReq['fkcodestado'] : null, 
+                    'fkcodcurso' => isset( $this->formReq['fkcodcurso'] ) ?  $this->formReq['fkcodcurso'] : null,
+                    'ano' => isset( $this->formReq['ano'] ) ?  $this->formReq['ano'] : null,
+                    'fkcodcidade' => isset( $this->formReq['fkcodcidade'] ) ?  $this->formReq['fkcodcidade'] : null
+            ];
+            Requi::create($insert);
             $this->dispatchBrowserEvent('toastr:success', ['message' => 'Requerimento cadastrado com sucesso']);
         } catch (\Throwable $th) {
+            dd($th->getMessage());
             $this->dispatchBrowserEvent('toastr:error', ['message' => 'Ocorreu um erro inexperado']);
         }
 

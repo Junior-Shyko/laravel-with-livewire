@@ -76,7 +76,8 @@
                 toastr.info(event.detail.message);
             })
             window.addEventListener('toastr:error', event => {
-                toastr.error(event.datail.message);
+                console.log(event.detail.message);
+                //toastr.error(event.datail.message);
             })
         </script>
 
