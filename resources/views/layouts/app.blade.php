@@ -70,7 +70,13 @@
                 
             })
             window.addEventListener('toastr:info', event => {
-                toastr.info(event.datail.message);
+                toastr.info(event.detail.message);
+            }) 
+            window.addEventListener('toastr:success', event => {
+                toastr.info(event.detail.message);
+            })
+            window.addEventListener('toastr:error', event => {
+                toastr.error(event.datail.message);
             })
         </script>
 

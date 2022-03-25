@@ -16,16 +16,6 @@
 <div class="py-6">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex flex-wrap">
-            <div class="container">
-                <div class="col-span-4">
-                    <button wire:click="addTodo" class="bg-emerald-500 hover:bg-emerald-700
-                    text-white font-bold py-2 px-4 border border-emerald-700 rounded">
-                       Button
-                     </button>
-                </div>
-                <div class="col-span-4"></div>
-                <div class="col-span-4"></div>
-            </div>
             <form wire:submit.prevent="store" class="border-red-500" id="formStoreRequisition">
             <div class="container">
                 <div class="container">

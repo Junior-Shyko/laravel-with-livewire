@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use DB;
 use Manny\Manny;
 use Livewire\Component;
+use App\Models\Requisition as Requi;
 
 class Requisition extends Component
 {
@@ -96,8 +97,15 @@ class Requisition extends Component
     public function store()
     {
         $val = $this->validate();
-        dd($val);
-        $this->dispatchBrowserEvent('toastr:info', ['message' => $this->validate()]);
+        try {
+            //code...event.detail.message
+            Requi::create($val);
+            $this->dispatchBrowserEvent('toastr:success', ['message' => 'Requerimento cadastrado com sucesso']);
+        } catch (\Throwable $th) {
+            $this->dispatchBrowserEvent('toastr:error', ['message' => 'Ocorreu um erro inexperado']);
+        }
+
+        
        
         // dd($val);
         // dd($this->formReq);
