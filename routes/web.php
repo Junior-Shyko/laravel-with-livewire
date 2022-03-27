@@ -18,6 +18,7 @@ use App\Http\Livewire\{
 */
 Route::get('tweets', [App\Http\Livewire\ShowTweets::class, '__invoke'])->name('tweets');
 Route::get('criar-requerimento', [App\Http\Livewire\Requisition::class, '__invoke']);
+Route::get('ver-requerimento', [App\Http\Livewire\Requisition::class, 'show']);
 
 Route::get('/', function () {
     return view('welcome');

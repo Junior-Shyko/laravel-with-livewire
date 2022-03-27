@@ -16,7 +16,7 @@
 <div class="py-6">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex flex-wrap">
-            <form wire:submit.prevent="store" class="border-red-500" id="formStoreRequisition">
+            <form wire:submit.prevent="store" class="w-full" id="formStoreRequisition">
             <div class="container">
                 <div class="container">
                     <div class="col-span-4">

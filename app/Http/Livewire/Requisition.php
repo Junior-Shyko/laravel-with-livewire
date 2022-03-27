@@ -5,7 +5,9 @@ namespace App\Http\Livewire;
 use DB;
 use Manny\Manny;
 use Livewire\Component;
-use App\Models\Requisition as Requi;
+use App\Models\Requisition as Requisitions;
+use App\Models\FunctionGeneral;
+use Carbon\Carbon;
 
 class Requisition extends Component
 {
@@ -16,11 +18,7 @@ class Requisition extends Component
     public $dtini = '';
     public $dtend = '';
     public $formReq = [];
-    protected $rules = [
-        'formReq.fkcodcategoria' => 'required',
-        'formReq.fkcodcurso' => 'required',
-        'formReq.fkcodcidade' => 'required',
-    ];
+   
     protected $messages = [
         'formReq.fkcodcategoria.required' => 'O Campo categoria é obrigatório',
         'formReq.fkcodcurso.required' => 'O Campo Curso é obrigatório',
@@ -29,7 +27,6 @@ class Requisition extends Component
 
     public function change($value)
     {
-      
         $this->showDivComp = true;
         if($value == 0){
             $this->showDivComp = false;
@@ -46,10 +43,6 @@ class Requisition extends Component
     {
         $course = DB::table('cursos')->get();
 
-        // foreach ($course as $key => $value) {
-        //     dump($value->id. ' - '. $value->curso);
-        // }
-        // dd($course);
         $city = [
             0 => 'Fortaleza',
             1 => 'Caucaia',
@@ -89,23 +82,50 @@ class Requisition extends Component
             ["sigla" => "SE", "nome" => "Sergipe"],
             ["sigla" => "TO", "nome" => "Tocantins"]
         ];
-           
-            
         return view('livewire.create-application', compact('course', 'city', 'state'));
     }
 
     public function store()
     {
-        $val = $this->validate();
-       //dd($this->formReq);
+        
+        $val = [];
+        if($this->formReq['fkcodcategoria'] == 1 || $this->formReq['fkcodcategoria'] == 2) {
+            $val = $this->validate(
+                [
+                    'formReq.fkcodcategoria' => 'required',
+                    'formReq.fkcodcurso' => 'required',
+                    'formReq.fkcodcidade' => 'required',
+                ]
+            );
+        }else{
+            $val = $this->validate(
+                ['formReq.fkcodcategoria.required' => 'Categoria é obrigatória'],
+                ['formReq.fkcodprograma' => 'required'],
+                ['formReq.fkcodhospital' => 'required'],
+                ['dtini' => 'required'],
+                ['dtend' => 'required'],
+                ['formReq.crm' => 'required'],
+                ['formReq.fkcodestado' => 'required'],               
+            );
+        }
+
+        if(isset($this->dtini)) {
+            $dtini = Carbon::parse($this->dtini);
+            $this->dtini = $dtini->format('Y-m-d');
+        }
+        if(isset($this->dtend)) {
+            $dtend = Carbon::parse($this->dtend);
+            $this->dtend = $dtend->format('Y-m-d');
+        }
+
         try {
             //code...event.detail.message
             $insert = [
                     'fkcodcategoria' => $this->formReq['fkcodcategoria'],
                     'fkcodprograma' => isset( $this->formReq['fkcodprograma'] ) ?  $this->formReq['fkcodprograma'] : 0,
                     'fkcodhospital' => isset( $this->formReq['fkcodhospital'] ) ?  $this->formReq['fkcodhospital'] : 0, 
-                    'datainicio' => isset( $this->formReq['datainicio'] ) ?  $this->formReq['datainicio'] : null,
-                    'datafinal' => isset( $this->formReq['datafinal'] ) ?  $this->formReq['datafinal'] : null,
+                    'datainicio' => isset( $this->dtini ) ?  $this->dtini : null,
+                    'datafinal' => isset( $this->dtend ) ?  $this->dtend : null,
                     'matricula' => isset( $this->formReq['matricula'] ) ?  $this->formReq['matricula'] : null,
                     'crm' => isset( $this->formReq['crm'] ) ?  $this->formReq['crm'] : null,
                     'fkcodestado' => isset( $this->formReq['fkcodestado'] ) ?  $this->formReq['fkcodestado'] : null, 
@@ -113,26 +133,18 @@ class Requisition extends Component
                     'ano' => isset( $this->formReq['ano'] ) ?  $this->formReq['ano'] : null,
                     'fkcodcidade' => isset( $this->formReq['fkcodcidade'] ) ?  $this->formReq['fkcodcidade'] : null
             ];
-            Requi::create($insert);
+            Requisitions::create($insert);
+            $this->reset();
             $this->dispatchBrowserEvent('toastr:success', ['message' => 'Requerimento cadastrado com sucesso']);
         } catch (\Throwable $th) {
             dd($th->getMessage());
             $this->dispatchBrowserEvent('toastr:error', ['message' => 'Ocorreu um erro inexperado']);
         }
-
-        
-       
-        // dd($val);
-        // dd($this->formReq);
     }
 
-    public function addTodo() 
+    public function show()
     {
-        //dump('aqui');
-        $this->dispatchBrowserEvent('name-updated', ['message' => 'Requerimento cadastrdo']);
+        // $all = Requisitions::where();
+        return view('livewire.requisition.show')->layout('layouts.app', ['title' => 'Show Posts']);
     }
-    // public function render()
-    // {
-    //     return view('livewire.requisition');
-    // }
 }

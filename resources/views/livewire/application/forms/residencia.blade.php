@@ -29,17 +29,17 @@
 <div class="col-span-12 lg:col-span-2">
     <label class="block text-sm font-medium 
         text-gray-700">De:</label>
-        <input  wire:model="formReq.datainicio" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+        <input  wire:model="dtini" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
         block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" 
-        id="" name="ano" type="text" placeholder="__/__/____">
+        id="" type="text" placeholder="__/__/____">
         <p class="text-gray-600 text-xs italic">Período da solicitação</p>
 </div>
 <div class="col-span-12 lg:col-span-2">
     <label class="block text-sm font-medium 
         text-gray-700">Até:</label>
-        <input wire:model="formReq.datafinal" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
+        <input wire:model="dtend" class="mt-1 focus:ring-emerald-500 focus:border-emerald-500 
         block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" 
-        id="" name="ano" type="text" placeholder="__/__/____">
+        id="" type="text" placeholder="__/__/____">
 </div>
 {{-- Matrícula --}}
 <div class="col-span-12 lg:col-span-4">
