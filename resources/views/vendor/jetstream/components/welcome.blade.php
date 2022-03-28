@@ -41,7 +41,7 @@
         <div class="flex items-center">
             <i class="fa fa-search fa-2x"> </i>
             <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
-                <a href="https://laracasts.com">CONSULTAR REQUERIMENTO</a>
+                <a href="{{url('ver-requerimento')}}">CONSULTAR REQUERIMENTO</a>
             </div>
         </div>
 

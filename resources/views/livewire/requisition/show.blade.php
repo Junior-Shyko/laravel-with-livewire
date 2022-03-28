@@ -26,34 +26,22 @@
                       </tr>
                     </thead>
                     <tbody>
+                        @foreach ($allRequeriments as $item)
                         <tr>
-                            <td class="border px-4 py-2">20/02/2020 09:56</td>
-                            <td class="border px-4 py-2">Residência Multip. em Saúde</td>
-                            <td class="border px-4 py-2">Técnica em saúde bucal</td>
+                            <td class="border px-4 py-2">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y H:i') }}</td>
+                            <td class="border px-4 py-2">{{ $item->fkcodcategoria }}</td>
+                            <td class="border px-4 py-2">{{ $item->fkcodprograma !== 0 ? \App\Models\Requisition::getNameProgram($item->fkcodprograma) : \App\Models\Requisition::getNameProgram($item->fkcodcurso) }}</td>
                             <td class="border px-4 py-2">Em Análise</td>
                             <td class="border px-4 py-2">Realizado</td>
                             <td class="border px-4 py-2">
-                                <a href="" class="bg-slate-300 hover:bg-green-800 text-gray font-bold py-2 px-4 rounded">
+                                <a href="" class="py-0.5 px-2 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </td>
                         </tr>
-                        <tr class="bg-gray-100">
-                            <td class="border px-4 py-2">Intro to CSS</td>
-                            <td class="border px-4 py-2">Adam</td>
-                            <td class="border px-4 py-2">858</td>
-                            <td class="border px-4 py-2">Intro to CSS</td>
-                            <td class="border px-4 py-2">Adam</td>
-                            <td class="border px-4 py-2">858</td>
-                          </tr>
-                          <tr>
-                            <td class="border px-4 py-2">Intro to CSS</td>
-                            <td class="border px-4 py-2">Adam</td>
-                            <td class="border px-4 py-2">858</td>
-                            <td class="border px-4 py-2">Intro to CSS</td>
-                            <td class="border px-4 py-2">Adam</td>
-                            <td class="border px-4 py-2">858</td>
-                          </tr>
+                        @endforeach
+                        
+                       
                     </tbody>
                 </table>
             </div>

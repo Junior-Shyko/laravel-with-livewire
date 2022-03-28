@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\Requisition as Requisitions;
 use App\Models\FunctionGeneral;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Redis;
 
 class Requisition extends Component
 {
@@ -144,7 +145,8 @@ class Requisition extends Component
 
     public function show()
     {
-        // $all = Requisitions::where();
-        return view('livewire.requisition.show')->layout('layouts.app', ['title' => 'Show Posts']);
+        $allRequeriments = Requisitions::get();
+       
+        return view('livewire.requisition.show', compact('allRequeriments'));
     }
 }
