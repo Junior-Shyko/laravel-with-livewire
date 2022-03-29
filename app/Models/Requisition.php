@@ -20,7 +20,8 @@ class Requisition extends Model
             'fkcodestado', 
             'fkcodcurso',
             'ano',
-            'fkcodcidade'
+            'fkcodcidade',
+            'user_id'
     ];
 
     static function getNameProgram($cod) {

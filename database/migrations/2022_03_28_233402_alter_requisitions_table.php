@@ -26,6 +26,11 @@ return new class extends Migration
             $table->dateTime('dataemissao')->nullable($value = true);;
             $table->dateTime('datarecebimento')->nullable($value = true);;
             $table->float('valordae', 8, 2);
+            $table->unsignedBigInteger('user_id');                      
+        });
+
+        Schema::table('requisitions', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');  
         });
     }
 

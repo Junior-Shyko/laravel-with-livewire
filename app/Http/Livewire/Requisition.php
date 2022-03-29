@@ -4,11 +4,12 @@ namespace App\Http\Livewire;
 
 use DB;
 use Manny\Manny;
-use Livewire\Component;
-use App\Models\Requisition as Requisitions;
-use App\Models\FunctionGeneral;
 use Carbon\Carbon;
+use Livewire\Component;
+use App\Models\FunctionGeneral;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
+use App\Models\Requisition as Requisitions;
 
 class Requisition extends Component
 {
@@ -19,12 +20,20 @@ class Requisition extends Component
     public $dtini = '';
     public $dtend = '';
     public $formReq = [];
+    public $user = 0;
+    public $ModalFormVisible=false;
    
     protected $messages = [
         'formReq.fkcodcategoria.required' => 'O Campo categoria é obrigatório',
         'formReq.fkcodcurso.required' => 'O Campo Curso é obrigatório',
         'formReq.fkcodcidade.required' => 'O Campo Cidade é obrigatório',
     ];
+
+    public function ShowReportModal($id)
+    {
+        //dd($id);
+        $this->ModalFormVisible=true;
+    }
 
     public function change($value)
     {
@@ -115,12 +124,13 @@ class Requisition extends Component
             $this->dtini = $dtini->format('Y-m-d');
         }
         if(isset($this->dtend)) {
-            $dtend = Carbon::parse($this->dtend);
+            $dt = FunctionGeneral::DataBRtoMySQL($this->dtend);
+            $dtend = Carbon::parse($dt);
             $this->dtend = $dtend->format('Y-m-d');
         }
 
         try {
-            //code...event.detail.message
+            //code...event.detail.messagewire:model="formReq.informacoes"
             $insert = [
                     'fkcodcategoria' => $this->formReq['fkcodcategoria'],
                     'fkcodprograma' => isset( $this->formReq['fkcodprograma'] ) ?  $this->formReq['fkcodprograma'] : 0,
@@ -132,7 +142,9 @@ class Requisition extends Component
                     'fkcodestado' => isset( $this->formReq['fkcodestado'] ) ?  $this->formReq['fkcodestado'] : null, 
                     'fkcodcurso' => isset( $this->formReq['fkcodcurso'] ) ?  $this->formReq['fkcodcurso'] : null,
                     'ano' => isset( $this->formReq['ano'] ) ?  $this->formReq['ano'] : null,
-                    'fkcodcidade' => isset( $this->formReq['fkcodcidade'] ) ?  $this->formReq['fkcodcidade'] : null
+                    'fkcodcidade' => isset( $this->formReq['fkcodcidade'] ) ?  $this->formReq['fkcodcidade'] : null,
+                    'informacoes' => isset( $this->formReq['informacoes'] ) ?  $this->formReq['informacoes'] : null,
+                    'user_id' => Auth::user()->id
             ];
             Requisitions::create($insert);
             $this->reset();
@@ -148,5 +160,10 @@ class Requisition extends Component
         $allRequeriments = Requisitions::get();
        
         return view('livewire.requisition.show', compact('allRequeriments'));
+    }
+
+    public function edit($id)
+    {
+        return view('livewire.requisition.edit');
     }
 }

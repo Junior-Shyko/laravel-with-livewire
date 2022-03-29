@@ -14,6 +14,7 @@
 </div>
 --}}
 <div class="py-6">
+    <x-jet-button wire:click="ShowReportModal({{ __(1) }})">{{ __('Reporter')}}</x-jet-button>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="flex flex-wrap">
             <form wire:submit.prevent="store" class="w-full" id="formStoreRequisition">
@@ -101,4 +102,24 @@
         </form>
         </div>
     </div>
+
+    <x-jet-dialog-modal wire:model="ModalFormVisible">
+        <x-slot name="title">
+            Delete Account
+        </x-slot>
+    
+        <x-slot name="content">
+            Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted.
+        </x-slot>
+    
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('ModalFormVisible')" wire:loading.attr="disabled">
+                Nevermind
+            </x-jet-secondary-button>
+    
+            <x-jet-danger-button class="ml-2" wire:click="deleteUser" wire:loading.attr="disabled">
+                Delete Account
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-confirmation-modal>
 </div>
