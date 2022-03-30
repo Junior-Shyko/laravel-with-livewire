@@ -21,7 +21,7 @@ class Requisition extends Component
     public $dtend = '';
     public $formReq = [];
     public $user = 0;
-    public $ModalFormVisible=false;
+    public $confirmingUserDeletion=false;
    
     protected $messages = [
         'formReq.fkcodcategoria.required' => 'O Campo categoria é obrigatório',
@@ -29,10 +29,13 @@ class Requisition extends Component
         'formReq.fkcodcidade.required' => 'O Campo Cidade é obrigatório',
     ];
 
-    public function ShowReportModal($id)
+    public function mount(){
+        $this->confirmingUserDeletion=false;
+    }
+    public function ShowReportModal()
     {
         //dd($id);
-        $this->ModalFormVisible=true;
+        $this->confirmingUserDeletion=true;
     }
 
     public function change($value)
@@ -159,7 +162,7 @@ class Requisition extends Component
     {
         $allRequeriments = Requisitions::get();
        
-        return view('livewire.requisition.show', compact('allRequeriments'));
+        return view('livewire.show', compact('allRequeriments'));
     }
 
     public function edit($id)
