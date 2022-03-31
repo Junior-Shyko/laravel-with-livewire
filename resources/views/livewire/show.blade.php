@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container mx-auto py-3 mt-3">
         <div class="row row-cols-1 text-center">
-            <h1>Meus requerimentos</h1>
+            <h1 class="font-weight-light">Meus requerimentos</h1>
         </div>
     </div>
 

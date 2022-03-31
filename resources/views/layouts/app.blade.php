@@ -47,9 +47,9 @@
         @livewireScripts
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script>
             window.addEventListener('name-updated', event => {
                 console.log(event.detail.message);
@@ -77,11 +77,11 @@
                 toastr.info(event.detail.message);
             }) 
             window.addEventListener('toastr:success', event => {
-                toastr.info(event.detail.message);
+                toastr.success(event.detail.message);
             })
             window.addEventListener('toastr:error', event => {
                 console.log(event.detail.message);
-                //toastr.error(event.datail.message);
+                toastr.error(event.datail.message);
             })
         </script>
 
